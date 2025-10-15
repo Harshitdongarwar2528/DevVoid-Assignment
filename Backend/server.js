@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,7 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 //Connect to MongoDB
-mongoose.connect("mongodb+srv://harshuzz:7038798690@cluster0.qi9t7uj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
+
 .then(() => console.log("MongoDB connected! 🌿💾"))
 .catch(err => console.log(err));
 
