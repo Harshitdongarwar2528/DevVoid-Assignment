@@ -1,45 +1,45 @@
 const express = require("express");
-const router = express.Router();
 const Task = require("../models/Task");
 
-// CREATE a task
+const router = express.Router();
+
+// Create task
 router.post("/", async (req, res) => {
   try {
-    const task = new Task(req.body);
-    await task.save();
-    res.status(201).json(task);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const task = await Task.create(req.body);
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
-// GET tasks for a specific project
+// Get all tasks for a project
 router.get("/:projectId", async (req, res) => {
   try {
     const tasks = await Task.find({ projectId: req.params.projectId });
     res.json(tasks);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
-// UPDATE task status (e.g. move between columns)
+// Update task
 router.put("/:id", async (req, res) => {
   try {
     const updated = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updated);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
-// DELETE a task
+// Delete task
 router.delete("/:id", async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
     res.json({ message: "Task deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 

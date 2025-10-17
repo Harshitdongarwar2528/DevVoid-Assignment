@@ -1,0 +1,240 @@
+/* Task Board Styles */
+.task-board-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.task-board-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.task-input-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.task-input-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.task-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.add-task-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4299e1, #3182ce);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-task-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+}
+
+.add-task-btn:active {
+  transform: translateY(0);
+}
+
+/* Status Columns */
+.status-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.status-column {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 500px;
+  border-top: 4px solid;
+}
+
+.status-column.todo {
+  border-top-color: #e53e3e;
+}
+
+.status-column.in-progress {
+  border-top-color: #dd6b20;
+}
+
+.status-column.done {
+  border-top-color: #38a169;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.status-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.status-count {
+  background: #e2e8f0;
+  color: #4a5568;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Task Cards */
+.task-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  cursor: grab;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.task-card:active {
+  cursor: grabbing;
+}
+
+.task-title {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-select {
+ flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  color: #2d3748; /* Ensure text is always visible */
+  font-weight: 500;
+  appearance: none; /* Remove default arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234a5568'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+
+.status-select:focus {
+   outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.delete-task-btn {
+  background: #fed7d7;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: #c53030;
+  transition: all 0.2s ease;
+  font-size: 12px;
+}
+
+.delete-task-btn:hover {
+  background: #feb2b2;
+  transform: scale(1.05);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  color: #a0aec0;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+/* Loading State */
+.loading-text {
+  text-align: center;
+  color: #718096;
+  padding: 20px;
+  font-style: italic;
+}
+
+.status-select option {
+  color: #2d3748;
+  background: white;
+  padding: 8px;
+}
+
+.status-select:hover {
+  border-color: #a0aec0;
+}
+
+/* Specific colors for each status in the dropdown */
+.status-select option[value="To Do"] {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+.status-select option[value="In Progress"] {
+  color: #dd6b20;
+  font-weight: 500;
+}
+
+.status-select option[value="Done"] {
+  color: #38a169;
+  font-weight: 500;
+}
