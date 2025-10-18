@@ -238,3 +238,127 @@
   color: #38a169;
   font-weight: 500;
 }
+/* Drag and Drop Styles */
+
+/* TaskBoard.css - Updated for @hello-pangea/dnd */
+
+.status-column {
+  min-height: 400px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+}
+
+.task-list {
+  min-height: 200px;
+  transition: all 0.2s ease;
+  border: 2px dashed transparent;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* This makes the drop zone visible when dragging over */
+.task-list.dragging-over {
+  background-color: rgba(66, 153, 225, 0.1);
+  border-color: #4299e1;
+}
+
+.task-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: grab;
+}
+
+.task-card.dragging {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: rotate(5deg);
+  cursor: grabbing;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.task-title {
+  flex: 1;
+  margin-right: 12px;
+  font-weight: 500;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.status-select {
+  padding: 4px 8px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 12px;
+  background: white;
+}
+
+.delete-task-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+.delete-task-btn:hover {
+  background-color: #fed7d7;
+}
+
+.empty-state {
+  text-align: center;
+  color: #718096;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Make sure the drag handle covers the entire card */
+.task-card > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Keep your existing header styles */
+.task-board-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.task-input-section {
+  margin-bottom: 24px;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.status-count {
+  background: #718096;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
