@@ -1,0 +1,150 @@
+.ai-assistant {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ai-header h3 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+}
+
+.clear-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.clear-btn:hover {
+  background: #5a6268;
+}
+
+.ai-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ai-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.ai-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.summary-btn {
+  background: #4299e1;
+  color: white;
+  align-self: flex-start;
+}
+
+.summary-btn:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.qa-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-selector {
+  width: 100%;
+}
+
+.task-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  background: white;
+   color: #2d3748;
+   font-size: 14px;
+}
+
+.question-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.question-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.ask-btn {
+  background: #48bb78;
+  color: white;
+  white-space: nowrap;
+}
+
+.ask-btn:hover:not(:disabled) {
+  background: #38a169;
+}
+
+.ai-response {
+  margin-top: 20px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #4299e1;
+}
+
+.ai-response h4 {
+  margin: 0 0 12px 0;
+  color: #2d3748;
+}
+
+.response-content {
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.qa-response .question {
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.qa-response .answer {
+  color: #2d3748;
+  background: #f7fafc;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #48bb78;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .question-input-group {
+    flex-direction: column;
+  }
+  
+  .ai-actions {
+    gap: 12px;
+  }
+}

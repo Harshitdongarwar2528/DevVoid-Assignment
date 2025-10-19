@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import AIAssistant from "./AIAssistant";
 import "../styles/TaskBoard.css";
 
 function TaskBoard({ projectId }) {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState({ title: '', description: '' });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function TaskBoard({ projectId }) {
   }, [projectId]);
 
   const addTask = async () => {
-    if (!newTask.trim()) {
+    if (!newTask.title.trim()) {
       alert("Please enter a task title!");
       return;
     }
@@ -33,11 +34,12 @@ function TaskBoard({ projectId }) {
     try {
       const res = await axios.post("http://localhost:5000/api/tasks", {
         projectId,
-        title: newTask,
+        title: newTask.title,
+        description: newTask.description,
         status: "To Do",
       });
       setTasks([...tasks, res.data]);
-      setNewTask("");
+      setNewTask({ title: '', description: '' });
     } catch (err) {
       console.error("Error adding task:", err);
       alert("Failed to add task. Please try again.");
@@ -99,7 +101,7 @@ function TaskBoard({ projectId }) {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.target.type !== 'textarea') {
       addTask();
     }
   };
@@ -126,16 +128,25 @@ function TaskBoard({ projectId }) {
         <div className="task-input-box">
           <input
             className="task-input"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
             onKeyPress={handleKeyPress}
-            placeholder="What needs to be done?"
+            placeholder="Task title"
+          />
+          <input
+            className="task-input"
+            value={newTask.description}
+            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+            placeholder="Task description"
           />
           <button className="add-task-btn" onClick={addTask}>
             + Add Task
           </button>
         </div>
       </div>
+
+      {/* AI Assistant Integration */}
+      <AIAssistant projectId={projectId} tasks={tasks} />
 
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="status-container">
@@ -173,45 +184,50 @@ function TaskBoard({ projectId }) {
                               {...provided.dragHandleProps}
                               className={`task-card ${snapshot.isDragging ? "dragging" : ""}`}
                             >
-                              <div className="task-title">{task.title}</div>
-                              <div className="task-actions">
-                                <select
-                                  className="status-select"
-                                  value={task.status}
-                                  onChange={(e) => {
-                                    const newStatus = e.target.value;
-                                    const taskId = task._id;
-                                    
-                                    // Optimistic update
-                                    const updatedTasks = tasks.map(t =>
-                                      t._id === taskId ? { ...t, status: newStatus } : t
-                                    );
-                                    setTasks(updatedTasks);
-
-                                    // Update backend
-                                    axios.put(`http://localhost:5000/api/tasks/${taskId}`, {
-                                      status: newStatus,
-                                    }).catch(err => {
-                                      console.error("Error updating task status:", err);
-                                      // Revert on error
-                                      const originalTasks = tasks.map(t =>
-                                        t._id === taskId ? { ...t, status: task.status } : t
+                              <div className="task-content">
+                                <div className="task-title">{task.title}</div>
+                                {task.description && (
+                                  <div className="task-description">{task.description}</div>
+                                )}
+                                <div className="task-actions">
+                                  <select
+                                    className="status-select"
+                                    value={task.status}
+                                    onChange={(e) => {
+                                      const newStatus = e.target.value;
+                                      const taskId = task._id;
+                                      
+                                      // Optimistic update
+                                      const updatedTasks = tasks.map(t =>
+                                        t._id === taskId ? { ...t, status: newStatus } : t
                                       );
-                                      setTasks(originalTasks);
-                                    });
-                                  }}
-                                >
-                                  <option value="To Do">To Do</option>
-                                  <option value="In Progress">In Progress</option>
-                                  <option value="Done">Done</option>
-                                </select>
-                                <button
-                                  onClick={() => deleteTask(task._id)}
-                                  className="delete-task-btn"
-                                  title="Delete task"
-                                >
-                                  🗑️
-                                </button>
+                                      setTasks(updatedTasks);
+
+                                      // Update backend
+                                      axios.put(`http://localhost:5000/api/tasks/${taskId}`, {
+                                        status: newStatus,
+                                      }).catch(err => {
+                                        console.error("Error updating task status:", err);
+                                        // Revert on error
+                                        const originalTasks = tasks.map(t =>
+                                          t._id === taskId ? { ...t, status: task.status } : t
+                                        );
+                                        setTasks(originalTasks);
+                                      });
+                                    }}
+                                  >
+                                    <option value="To Do">To Do</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Done">Done</option>
+                                  </select>
+                                  <button
+                                    onClick={() => deleteTask(task._id)}
+                                    className="delete-task-btn"
+                                    title="Delete task"
+                                  >
+                                    🗑️
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           )}
