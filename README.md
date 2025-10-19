@@ -151,6 +151,29 @@ Here's a little map of how the frontend and backend chat with each other\!
 
   * `POST /api/ai/summarize/:projectId` - Generate project summary
   * `POST /api/ai/ask/:taskId` - Ask questions about a task
+### **Screenshots** 📸
+
+Here are visual examples showcasing the application's interface and core features.
+
+### **Screenshots** 📸
+
+Here are visual examples showcasing the application's interface and core features.
+
+#### Task Board with AI Assistant
+![Task Board Interface](./screenshots/task-board-screenshot.png)
+*Showing the Kanban board with tasks, columns, and AI Assistant section*
+
+#### AI-Powered Features  
+![AI Summarization](./screenshots/ai-features-screenshot.png)
+*Demonstrating AI project summarization and Q&A functionality*
+
+#### Progress Bar View
+![Progress Tracking](./screenshots/progressbar-screenshot.png)
+*Visual progress tracking and project statistics*
+
+#### Drag & Drop in Action
+![Drag Drop Functionality](./screenshots/Drag&Drop-screenshot.png)
+*Smooth drag and drop functionality between task columns*
 
 -----
 
