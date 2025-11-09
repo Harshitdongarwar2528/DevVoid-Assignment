@@ -1,6 +1,6 @@
-# 💖 DevVoid Assignment: The Todo Manager\!
+# 💖 TaskFlow : The Todo Manager\!
 
-Welcome to the **DevVoid Assignment**\! This is a super sweet, full-stack **MERN** application designed to make managing projects and tasks an absolute delight. We've even added a sprinkle of **AI magic** with **Gemini** to help you stay on top of your to-do list\! 🚀
+Welcome to the **TaskFlow : The Todo Manager**\! This is a super sweet, full-stack **MERN** application designed to make managing projects and tasks an absolute delight. We've even added a sprinkle of **AI magic** with **Gemini** to help you stay on top of your to-do list\! 🚀
 
 -----
 
